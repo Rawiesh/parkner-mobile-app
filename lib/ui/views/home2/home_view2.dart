@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
 import 'package:parkner_mobile_app/ui/common/app_colors.dart';
 import 'package:parkner_mobile_app/ui/common/ui_helpers.dart';
+import 'package:stacked/stacked.dart';
 
-import 'home_viewmodel.dart';
+import 'home_viewmodel2.dart';
 
-class HomeView extends StackedView<HomeViewModel> {
-  const HomeView({Key? key}) : super(key: key);
+class HomeView2 extends StackedView<HomeViewModel2> {
+  const HomeView2({Key? key}) : super(key: key);
 
   @override
   Widget builder(
     BuildContext context,
-    HomeViewModel viewModel,
+    HomeViewModel2 viewModel,
     Widget? child,
   ) {
     return Scaffold(
@@ -78,8 +78,8 @@ class HomeView extends StackedView<HomeViewModel> {
   }
 
   @override
-  HomeViewModel viewModelBuilder(
+  HomeViewModel2 viewModelBuilder(
     BuildContext context,
   ) =>
-      HomeViewModel();
+      HomeViewModel2();
 }

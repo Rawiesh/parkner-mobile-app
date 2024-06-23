@@ -3,12 +3,12 @@ import 'package:mockito/mockito.dart';
 import 'package:parkner_mobile_app/app/app.bottomsheets.dart';
 import 'package:parkner_mobile_app/app/app.locator.dart';
 import 'package:parkner_mobile_app/ui/common/app_strings.dart';
-import 'package:parkner_mobile_app/ui/views/home/home_viewmodel.dart';
+import 'package:parkner_mobile_app/ui/views/home2/home_viewmodel2.dart';
 
 import '../helpers/test_helpers.dart';
 
 void main() {
-  HomeViewModel getModel() => HomeViewModel();
+  HomeViewModel2 getModel() => HomeViewModel2();
 
   group('HomeViewmodelTest -', () {
     setUp(() => registerServices());

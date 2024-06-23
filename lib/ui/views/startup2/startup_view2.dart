@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:stacked/stacked.dart';
 import 'package:parkner_mobile_app/ui/common/ui_helpers.dart';
+import 'package:stacked/stacked.dart';
 
 import 'startup_viewmodel.dart';
 
-class StartupView extends StackedView<StartupViewModel> {
-  const StartupView({Key? key}) : super(key: key);
+class StartupView2 extends StackedView<StartupViewModel2> {
+  const StartupView2({Key? key}) : super(key: key);
 
   @override
   Widget builder(
     BuildContext context,
-    StartupViewModel viewModel,
+    StartupViewModel2 viewModel,
     Widget? child,
   ) {
     return const Scaffold(
@@ -45,12 +45,13 @@ class StartupView extends StackedView<StartupViewModel> {
   }
 
   @override
-  StartupViewModel viewModelBuilder(
+  StartupViewModel2 viewModelBuilder(
     BuildContext context,
   ) =>
-      StartupViewModel();
+      StartupViewModel2();
 
   @override
-  void onViewModelReady(StartupViewModel viewModel) => SchedulerBinding.instance
-      .addPostFrameCallback((timeStamp) => viewModel.runStartupLogic());
+  void onViewModelReady(StartupViewModel2 viewModel) =>
+      SchedulerBinding.instance
+          .addPostFrameCallback((timeStamp) => viewModel.runStartupLogic());
 }
