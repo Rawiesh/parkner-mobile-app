@@ -30,17 +30,17 @@ class StartupView extends StackedView<StartupViewModel> {
           ),
         ),
         width: double.infinity,
-        child: const Column(
+        child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image(
+            const Image(
               image: AssetImage('assets/images/logo.png'),
               width: 250,
             ),
-            SizedBox(height: 24),
-            Text(
+            const SizedBox(height: 24),
+            const Text(
               "All parking spots in one place",
               style: TextStyle(
                 fontSize: 18,
@@ -48,8 +48,8 @@ class StartupView extends StackedView<StartupViewModel> {
                 color: Color(0xff06100E),
               ),
             ),
-            SizedBox(height: 8),
-            Text(
+            const SizedBox(height: 8),
+            const Text(
               "Never worry about parking again",
               style: TextStyle(
                 fontSize: 14,
@@ -57,10 +57,10 @@ class StartupView extends StackedView<StartupViewModel> {
                 color: Color(0xff38403E),
               ),
             ),
-            SizedBox(height: 32),
-            LoginButton(),
-            SizedBox(height: 16),
-            GuestButton(),
+            const SizedBox(height: 32),
+            const LoginButton(),
+            const SizedBox(height: 16),
+            GuestButton(onPress: viewModel.onGuestPress),
           ],
         ),
       ),

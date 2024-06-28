@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class GuestButton extends StatelessWidget {
-  const GuestButton({super.key});
+  final VoidCallback onPress;
+  const GuestButton({super.key, required this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class GuestButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(4.0),
         ),
       ),
-      onPressed: () {},
+      onPressed: onPress,
       child: const Text(
         "Continue as guest",
         style: TextStyle(

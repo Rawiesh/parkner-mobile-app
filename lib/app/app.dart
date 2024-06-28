@@ -1,10 +1,11 @@
 import 'package:parkner_mobile_app/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:parkner_mobile_app/ui/dialogs/info_alert/info_alert_dialog.dart';
+import 'package:parkner_mobile_app/ui/views/home/home_view.dart';
 import 'package:parkner_mobile_app/ui/views/home2/home_view2.dart';
+import 'package:parkner_mobile_app/ui/views/startup/startup_view.dart';
 import 'package:parkner_mobile_app/ui/views/startup2/startup_view2.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:parkner_mobile_app/ui/views/startup/startup_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -12,6 +13,7 @@ import 'package:parkner_mobile_app/ui/views/startup/startup_view.dart';
     MaterialRoute(page: HomeView2),
     MaterialRoute(page: StartupView2),
     MaterialRoute(page: StartupView),
+    MaterialRoute(page: HomeView),
 // @stacked-route
   ],
   dependencies: [
