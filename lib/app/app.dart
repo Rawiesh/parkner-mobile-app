@@ -4,13 +4,15 @@ import 'package:parkner_mobile_app/ui/views/home2/home_view2.dart';
 import 'package:parkner_mobile_app/ui/views/startup2/startup_view2.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:parkner_mobile_app/ui/views/startup/startup_view.dart';
 // @stacked-import
 
 @StackedApp(
   routes: [
     MaterialRoute(page: HomeView2),
     MaterialRoute(page: StartupView2),
-    // @stacked-route
+    MaterialRoute(page: StartupView),
+// @stacked-route
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),
