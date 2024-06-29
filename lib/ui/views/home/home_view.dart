@@ -57,7 +57,11 @@ class HomeView extends StackedView<HomeViewModel> {
           ),
           const SizedBox(height: 24),
           Text(
-            "Total: ${viewModel.areas.length} Parking Area's",
+            viewModel.areas.length > 1
+                ? "${viewModel.areas.length} Parking areas found"
+                : viewModel.areas.length == 1
+                    ? "1 Parking area found"
+                    : "No parking areas found",
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 18,

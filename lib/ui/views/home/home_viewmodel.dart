@@ -16,15 +16,26 @@ class HomeViewModel extends BaseViewModel {
     final response =
         await http.get(Uri.parse('https://parkner.vercel.app/api/lots'));
     if (response.statusCode == 200) {
-      if (response.body == jsonEncode(areas)) return;
       areas = jsonDecode(response.body);
+      areas = searchAreas(areas, searchController.text);
       createAreaWidgets();
     }
   }
 
+  List searchAreas(List areas, String query) {
+    if (query.isEmpty) return areas;
+
+    final lowerCaseQuery = query.toLowerCase();
+    return areas.where((area) {
+      final name = area["name"]?.toString().toLowerCase() ?? '';
+      final location = area["location"]?.toString().toLowerCase() ?? '';
+      return name.contains(lowerCaseQuery) || location.contains(lowerCaseQuery);
+    }).toList();
+  }
+
   void startFetchingAreas() {
     fetchAllAreas();
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
       fetchAllAreas();
     });
   }
