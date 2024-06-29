@@ -55,6 +55,18 @@ class HomeView extends StackedView<HomeViewModel> {
               ],
             ),
           ),
+          const SizedBox(height: 24),
+          Text(
+            "Total: ${viewModel.areas.length} Parking Area's",
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w400,
+              color: Color(0xff06100E),
+            ),
+          ),
+          const SizedBox(height: 16),
+          ...viewModel.areasSection,
         ],
       ),
     );
@@ -65,4 +77,10 @@ class HomeView extends StackedView<HomeViewModel> {
     BuildContext context,
   ) =>
       HomeViewModel();
+
+  @override
+  void onViewModelReady(HomeViewModel viewModel) {
+    super.onViewModelReady(viewModel);
+    viewModel.startFetchingAreas();
+  }
 }
