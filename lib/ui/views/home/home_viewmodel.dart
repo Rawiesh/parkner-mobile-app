@@ -3,10 +3,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:parkner_mobile_app/app/app.locator.dart';
+import 'package:parkner_mobile_app/ui/views/parking_area/parking_area_view.dart';
 import 'package:parkner_mobile_app/ui/widgets/area_card.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends BaseViewModel {
+  final _navigationService = locator<NavigationService>();
   final searchController = TextEditingController();
   final List<Widget> areasSection = [];
   dynamic areas = [];
@@ -50,6 +54,11 @@ class HomeViewModel extends BaseViewModel {
     areasSection.clear();
     for (var area in areas) {
       areasSection.add(AreaCard(
+        onTap: () {
+          _navigationService.navigateToView(
+            ParkingAreaView(lotId: area["lot_id"]),
+          );
+        },
         imgUrl: area["img_url"] ?? "https://picsum.photos/250?image=9",
         name: area["name"],
         address: area["address"] ?? "Address",

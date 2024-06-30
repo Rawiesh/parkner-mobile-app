@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AreaCard extends StatelessWidget {
+  final void Function() onTap;
   final String imgUrl;
   final String name;
   final String? address;
@@ -9,6 +10,7 @@ class AreaCard extends StatelessWidget {
 
   const AreaCard({
     super.key,
+    required this.onTap,
     required this.imgUrl,
     required this.name,
     this.address,
@@ -18,15 +20,15 @@ class AreaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: const BoxDecoration(
-        color: Color(0xffe6f7f7),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
-      ),
-      child: GestureDetector(
-        onTap: () {},
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        decoration: const BoxDecoration(
+          color: Color(0xffe6f7f7),
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

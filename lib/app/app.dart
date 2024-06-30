@@ -6,6 +6,7 @@ import 'package:parkner_mobile_app/ui/views/startup/startup_view.dart';
 import 'package:parkner_mobile_app/ui/views/startup2/startup_view2.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:parkner_mobile_app/ui/views/parking_area/parking_area_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -14,6 +15,7 @@ import 'package:stacked_services/stacked_services.dart';
     MaterialRoute(page: StartupView2),
     MaterialRoute(page: StartupView),
     MaterialRoute(page: HomeView),
+    MaterialRoute(page: ParkingAreaView),
 // @stacked-route
   ],
   dependencies: [
