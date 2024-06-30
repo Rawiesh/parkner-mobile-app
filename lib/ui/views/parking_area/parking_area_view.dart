@@ -15,6 +15,10 @@ class ParkingAreaView extends StackedView<ParkingAreaViewModel> {
   ) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
+      appBar: AppBar(
+        title: Text(viewModel.lotData?["name"] ?? "Parking Lot"),
+        backgroundColor: const Color(0xff6bced1),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [Text("Lot id: $lotId")],

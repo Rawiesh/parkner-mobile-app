@@ -15,6 +15,11 @@ class HomeView extends StackedView<HomeViewModel> {
   ) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+      appBar: AppBar(
+        title: null,
+        toolbarHeight: 0,
+        backgroundColor: const Color(0xff6bced1),
+      ),
       body: ListView(
         children: [
           Container(

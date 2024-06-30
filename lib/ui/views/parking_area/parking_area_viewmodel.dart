@@ -20,6 +20,7 @@ class ParkingAreaViewModel extends BaseViewModel {
         await http.get(Uri.parse('https://parkner.vercel.app/api/lot/$lotId'));
     if (response.statusCode == 200) {
       lotData = jsonDecode(response.body);
+      notifyListeners();
       inspect(lotData);
     }
   }
