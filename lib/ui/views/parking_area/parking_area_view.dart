@@ -27,4 +27,10 @@ class ParkingAreaView extends StackedView<ParkingAreaViewModel> {
     BuildContext context,
   ) =>
       ParkingAreaViewModel();
+
+  @override
+  void onViewModelReady(ParkingAreaViewModel viewModel) {
+    super.onViewModelReady(viewModel);
+    viewModel.initialiseVM(receivedLotId: lotId);
+  }
 }
