@@ -39,7 +39,8 @@ class HomeViewModel extends BaseViewModel {
 
   void startFetchingAreas() {
     fetchAllAreas();
-    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
+    // TODO: Reduce to 500ms before production build
+    _timer = Timer.periodic(const Duration(days: 1), (timer) {
       fetchAllAreas();
     });
   }
