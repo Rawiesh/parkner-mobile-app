@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AreaCard extends StatelessWidget {
   final String imgUrl;
   final String name;
-  final String? location;
+  final String? address;
   final String? distance;
   final String? price;
 
@@ -11,7 +11,7 @@ class AreaCard extends StatelessWidget {
     super.key,
     required this.imgUrl,
     required this.name,
-    this.location,
+    this.address,
     this.distance,
     this.price,
   });
@@ -54,7 +54,7 @@ class AreaCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      location ?? "",
+                      address ?? "",
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,

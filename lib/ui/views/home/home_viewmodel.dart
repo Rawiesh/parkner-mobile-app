@@ -28,8 +28,8 @@ class HomeViewModel extends BaseViewModel {
     final lowerCaseQuery = query.toLowerCase();
     return areas.where((area) {
       final name = area["name"]?.toString().toLowerCase() ?? '';
-      final location = area["location"]?.toString().toLowerCase() ?? '';
-      return name.contains(lowerCaseQuery) || location.contains(lowerCaseQuery);
+      final address = area["address"]?.toString().toLowerCase() ?? '';
+      return name.contains(lowerCaseQuery) || address.contains(lowerCaseQuery);
     }).toList();
   }
 
@@ -52,7 +52,7 @@ class HomeViewModel extends BaseViewModel {
       areasSection.add(AreaCard(
         imgUrl: area["img_url"] ?? "https://picsum.photos/250?image=9",
         name: area["name"],
-        location: area["location"] ?? "Location",
+        address: area["address"] ?? "Address",
         distance: area["distance"] ?? "Distance",
         price: area["reservation_price"]?.toString(),
       ));
