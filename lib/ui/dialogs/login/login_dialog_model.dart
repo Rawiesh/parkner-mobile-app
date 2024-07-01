@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parkner_mobile_app/app/app.locator.dart';
+import 'package:parkner_mobile_app/app/app.router.dart';
 import 'package:parkner_mobile_app/services/auth_service.dart';
-import 'package:parkner_mobile_app/ui/views/home/home_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -30,8 +30,8 @@ class LoginDialogModel extends BaseViewModel {
     }
   }
 
-  void continueToHome() {
-    _navigationService.navigateToView(const HomeView());
+  Future<void> continueToHome() async {
+    await _navigationService.navigateToHomeView();
   }
 
   @override
