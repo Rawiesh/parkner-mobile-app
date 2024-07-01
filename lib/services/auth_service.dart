@@ -9,7 +9,7 @@ class AuthService {
     required String username,
     required String password,
   }) async {
-    user?.clear();
+    clearUser();
 
     final response = await http.post(
       Uri.parse('https://parkner.vercel.app/api/users/login'),
@@ -35,7 +35,7 @@ class AuthService {
     required String email,
     required String password,
   }) async {
-    user?.clear();
+    clearUser();
 
     final response = await http.post(
       Uri.parse('https://parkner.vercel.app/api/users/sign-up'),
@@ -54,5 +54,9 @@ class AuthService {
     }
 
     return null;
+  }
+
+  void clearUser() {
+    user = null;
   }
 }
