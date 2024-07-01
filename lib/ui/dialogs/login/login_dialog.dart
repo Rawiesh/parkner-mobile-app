@@ -82,6 +82,7 @@ class LoginDialog extends StackedView<LoginDialogModel> {
                   final res = await viewModel.onLoginPressed();
                   if (res == false) return;
                   completer(DialogResponse(confirmed: true));
+                  viewModel.continueToHome();
                 },
               )
             ],

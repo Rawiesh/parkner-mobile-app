@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:parkner_mobile_app/app/app.locator.dart';
 import 'package:parkner_mobile_app/services/auth_service.dart';
@@ -23,15 +21,17 @@ class LoginDialogModel extends BaseViewModel {
       username: usernameController.text,
       password: passwordController.text,
     );
-    inspect(msg);
     if (msg != null) {
       formMsg = msg;
       notifyListeners();
       return false;
     } else {
-      _navigationService.clearStackAndShowView(const HomeView());
       return true;
     }
+  }
+
+  void continueToHome() {
+    _navigationService.navigateToView(const HomeView());
   }
 
   @override

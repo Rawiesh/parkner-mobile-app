@@ -87,6 +87,7 @@ class SignupDialog extends StackedView<SignupDialogModel> {
                   final res = await viewModel.onSignUpPressed();
                   if (res == false) return;
                   completer(DialogResponse(confirmed: true));
+                  viewModel.continueToHome();
                 },
               )
             ],

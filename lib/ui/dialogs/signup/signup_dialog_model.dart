@@ -32,9 +32,12 @@ class SignupDialogModel extends BaseViewModel {
         username: usernameController.text,
         password: passwordController.text,
       );
-      _navigationService.clearStackAndShowView(const HomeView());
       return true;
     }
+  }
+
+  void continueToHome() {
+    _navigationService.navigateToView(const HomeView());
   }
 
   @override
