@@ -4,17 +4,20 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:parkner_mobile_app/app/app.locator.dart';
+import 'package:parkner_mobile_app/services/auth_service.dart';
 import 'package:parkner_mobile_app/ui/views/parking_area/parking_area_view.dart';
 import 'package:parkner_mobile_app/ui/widgets/area_card.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends BaseViewModel {
+  final _authService = locator<AuthService>();
   final _navigationService = locator<NavigationService>();
   final searchController = TextEditingController();
   final List<Widget> areasSection = [];
   dynamic areas = [];
   Timer? _timer;
+  Map? user;
 
   Future<void> fetchAllAreas() async {
     final response =
@@ -37,7 +40,9 @@ class HomeViewModel extends BaseViewModel {
     }).toList();
   }
 
-  void startFetchingAreas() {
+  void initialiseVM() {
+    user = _authService.user;
+    notifyListeners();
     fetchAllAreas();
     // TODO: Reduce to 500ms before production build
     _timer = Timer.periodic(const Duration(days: 1), (timer) {

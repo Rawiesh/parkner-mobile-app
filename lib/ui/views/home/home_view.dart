@@ -36,9 +36,11 @@ class HomeView extends StackedView<HomeViewModel> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Hello Guest!",
-                  style: TextStyle(
+                Text(
+                  viewModel.user?["username"] != null
+                      ? "Hello ${viewModel.user?["username"]}"
+                      : "Hello Guest!",
+                  style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
                     color: Color(0xff06100E),
@@ -90,6 +92,6 @@ class HomeView extends StackedView<HomeViewModel> {
   @override
   void onViewModelReady(HomeViewModel viewModel) {
     super.onViewModelReady(viewModel);
-    viewModel.startFetchingAreas();
+    viewModel.initialiseVM();
   }
 }
