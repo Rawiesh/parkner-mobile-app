@@ -675,4 +675,31 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
 /// A class which mocks [AuthService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthService extends _i1.Mock implements _i7.AuthService {}
+class MockAuthService extends _i1.Mock implements _i7.AuthService {
+  @override
+  set user(Map<dynamic, dynamic>? _user) => super.noSuchMethod(
+        Invocation.setter(
+          #user,
+          _user,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Future<String?> loginUser({
+    required String? username,
+    required String? password,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #loginUser,
+          [],
+          {
+            #username: username,
+            #password: password,
+          },
+        ),
+        returnValue: _i5.Future<String?>.value(),
+        returnValueForMissingStub: _i5.Future<String?>.value(),
+      ) as _i5.Future<String?>);
+}

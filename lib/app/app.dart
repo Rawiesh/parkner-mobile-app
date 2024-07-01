@@ -8,6 +8,7 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:parkner_mobile_app/ui/views/parking_area/parking_area_view.dart';
 import 'package:parkner_mobile_app/services/auth_service.dart';
+import 'package:parkner_mobile_app/ui/dialogs/login/login_dialog.dart';
 // @stacked-import
 
 @StackedApp(
@@ -32,7 +33,8 @@ import 'package:parkner_mobile_app/services/auth_service.dart';
   ],
   dialogs: [
     StackedDialog(classType: InfoAlertDialog),
-    // @stacked-dialog
+    StackedDialog(classType: LoginDialog),
+// @stacked-dialog
   ],
 )
 class App {}

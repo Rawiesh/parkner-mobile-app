@@ -61,7 +61,7 @@ class StartupView extends StackedView<StartupViewModel> {
             PrimaryBtn(
               btnText: "Login",
               size: const Size(250, 50),
-              onPressed: () {},
+              onPressed: viewModel.onLoginPressed,
             ),
             const SizedBox(height: 16),
             GuestButton(onPress: viewModel.onGuestPress),
