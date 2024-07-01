@@ -56,7 +56,8 @@ class ParkingAreaView extends StackedView<ParkingAreaViewModel> {
               ],
             )),
             // Reservation section
-            viewModel.lotData?["reservable"] == true &&
+            viewModel.user != null &&
+                    viewModel.lotData?["reservable"] == true &&
                     viewModel.selectedSpot.isNotEmpty
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.center,

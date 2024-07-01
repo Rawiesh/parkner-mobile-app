@@ -2,17 +2,22 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:parkner_mobile_app/app/app.locator.dart';
+import 'package:parkner_mobile_app/services/auth_service.dart';
 import 'package:stacked/stacked.dart';
 
 class ParkingAreaViewModel extends BaseViewModel {
+  final _authService = locator<AuthService>();
   String? lotId;
   dynamic lotData;
   Timer? _timer;
   String selectedSpot = "";
   int availableSpots = 6;
+  Map? user;
 
   void initialiseVM({required String? receivedLotId}) {
     lotId = receivedLotId;
+    user = _authService.user;
     startFetchingLotData();
   }
 
