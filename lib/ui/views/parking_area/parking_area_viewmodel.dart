@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:stacked/stacked.dart';
@@ -9,20 +8,37 @@ class ParkingAreaViewModel extends BaseViewModel {
   String? lotId;
   dynamic lotData;
   Timer? _timer;
+  String selectedSpot = "";
+  int availableSpots = 6;
 
   void initialiseVM({required String? receivedLotId}) {
     lotId = receivedLotId;
     startFetchingLotData();
   }
 
+  void setSelectedSpot(String value) {
+    selectedSpot = value;
+    notifyListeners();
+  }
+
+  void onReservePressed() {}
+
   Future<void> fetchLotData() async {
     final response =
         await http.get(Uri.parse('https://parkner.vercel.app/api/lot/$lotId'));
     if (response.statusCode == 200) {
       lotData = jsonDecode(response.body);
-      notifyListeners();
-      inspect(lotData);
     }
+
+    availableSpots = 0;
+
+    lotData["spots"].forEach((key, spot) {
+      if (spot["reserved"] == false && spot["occupied"] == false) {
+        availableSpots++;
+      }
+    });
+
+    notifyListeners();
   }
 
   void startFetchingLotData() {
