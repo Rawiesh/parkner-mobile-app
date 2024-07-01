@@ -83,6 +83,7 @@ class SignupDialog extends StackedView<SignupDialogModel> {
               PrimaryBtn(
                 btnText: "Sign up",
                 size: const Size(280, 50),
+                backgroundColor: const Color(0xff358C7C),
                 onPressed: () async {
                   final res = await viewModel.onSignUpPressed();
                   if (res == false) return;

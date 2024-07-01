@@ -61,12 +61,14 @@ class StartupView extends StackedView<StartupViewModel> {
             PrimaryBtn(
               btnText: "Login",
               size: const Size(250, 50),
+              backgroundColor: const Color(0xff358C7C),
               onPressed: viewModel.onLoginPressed,
             ),
             const SizedBox(height: 16),
             PrimaryBtn(
               btnText: "Sign up",
               size: const Size(250, 50),
+              backgroundColor: const Color(0xffFF6961),
               onPressed: viewModel.onSignUpPressed,
             ),
             const SizedBox(height: 16),
