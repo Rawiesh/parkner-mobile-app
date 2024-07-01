@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parkner_mobile_app/ui/widgets/guest_button.dart';
-import 'package:parkner_mobile_app/ui/widgets/login_button.dart';
+import 'package:parkner_mobile_app/ui/widgets/primary_button.dart';
 import 'package:stacked/stacked.dart';
 
 import 'startup_viewmodel.dart';
@@ -58,7 +58,11 @@ class StartupView extends StackedView<StartupViewModel> {
               ),
             ),
             const SizedBox(height: 32),
-            const LoginButton(),
+            PrimaryBtn(
+              btnText: "Login",
+              size: const Size(250, 50),
+              onPressed: () {},
+            ),
             const SizedBox(height: 16),
             GuestButton(onPress: viewModel.onGuestPress),
           ],
