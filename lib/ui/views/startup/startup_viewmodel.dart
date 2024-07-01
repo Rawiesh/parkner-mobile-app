@@ -12,6 +12,10 @@ class StartupViewModel extends BaseViewModel {
     _dialogService.showCustomDialog(variant: DialogType.login);
   }
 
+  void onSignUpPressed() async {
+    _dialogService.showCustomDialog(variant: DialogType.signup);
+  }
+
   void onGuestPress() async {
     _navigationService.navigateTo(Routes.homeView);
   }

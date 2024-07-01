@@ -29,4 +29,30 @@ class AuthService {
 
     return null;
   }
+
+  Future<String?> signUpUser({
+    required String username,
+    required String email,
+    required String password,
+  }) async {
+    user?.clear();
+
+    final response = await http.post(
+      Uri.parse('https://parkner.vercel.app/api/users/sign-up'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'username': username,
+        'email': email,
+        'password': password,
+      }),
+    );
+
+    final data = jsonDecode(response.body);
+
+    if (data?.containsKey("message")) {
+      return data["message"];
+    }
+
+    return null;
+  }
 }
