@@ -86,8 +86,12 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i6.ParkingAreaView: (data) {
+      final args = data.getArgs<ParkingAreaViewArguments>(
+        orElse: () => const ParkingAreaViewArguments(),
+      );
       return _i7.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i6.ParkingAreaView(),
+        builder: (context) =>
+            _i6.ParkingAreaView(key: args.key, lotId: args.lotId),
         settings: data,
       );
     },
@@ -98,6 +102,33 @@ class StackedRouter extends _i1.RouterBase {
 
   @override
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
+}
+
+class ParkingAreaViewArguments {
+  const ParkingAreaViewArguments({
+    this.key,
+    this.lotId,
+  });
+
+  final _i7.Key? key;
+
+  final String? lotId;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "lotId": "$lotId"}';
+  }
+
+  @override
+  bool operator ==(covariant ParkingAreaViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.lotId == lotId;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ lotId.hashCode;
+  }
 }
 
 extension NavigatorStateExtension on _i8.NavigationService {
@@ -157,14 +188,17 @@ extension NavigatorStateExtension on _i8.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToParkingAreaView([
+  Future<dynamic> navigateToParkingAreaView({
+    _i7.Key? key,
+    String? lotId,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.parkingAreaView,
+        arguments: ParkingAreaViewArguments(key: key, lotId: lotId),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -227,14 +261,17 @@ extension NavigatorStateExtension on _i8.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithParkingAreaView([
+  Future<dynamic> replaceWithParkingAreaView({
+    _i7.Key? key,
+    String? lotId,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.parkingAreaView,
+        arguments: ParkingAreaViewArguments(key: key, lotId: lotId),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
