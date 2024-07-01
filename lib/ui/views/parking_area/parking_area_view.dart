@@ -55,37 +55,40 @@ class ParkingAreaView extends StackedView<ParkingAreaViewModel> {
                 ),
               ],
             )),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      "SRD ${viewModel.lotData?["reservation_price"]?.toStringAsFixed(2)}",
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xff38403E),
+            // Reservation section
+            viewModel.lotData?["reservable"] == true
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            "SRD ${viewModel.lotData?["reservation_price"]?.toStringAsFixed(2)}",
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xff38403E),
+                            ),
+                          ),
+                          const Text(
+                            "per hour",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xff38403E),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const Text(
-                      "per hour",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xff38403E),
+                      const SizedBox(width: 16),
+                      PrimaryBtn(
+                        btnText: "Reserve",
+                        size: const Size(250, 50),
+                        onPressed: viewModel.onReservePressed,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(width: 16),
-                PrimaryBtn(
-                  btnText: "Reserve",
-                  size: const Size(250, 50),
-                  onPressed: viewModel.onReservePressed,
-                ),
-              ],
-            ),
+                    ],
+                  )
+                : Container(),
             const SizedBox(height: 16),
           ],
         ),
