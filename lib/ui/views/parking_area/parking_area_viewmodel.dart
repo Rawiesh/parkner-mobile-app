@@ -22,6 +22,7 @@ class ParkingAreaViewModel extends BaseViewModel {
   }
 
   void setSelectedSpot(String value) {
+    if (user == null) return;
     if (lotData?["reservable"] == true) {
       selectedSpot = value;
       notifyListeners();
