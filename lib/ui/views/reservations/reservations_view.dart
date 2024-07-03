@@ -43,4 +43,10 @@ class ReservationsView extends StackedView<ReservationsViewModel> {
     BuildContext context,
   ) =>
       ReservationsViewModel();
+
+  @override
+  void onViewModelReady(ReservationsViewModel viewModel) {
+    super.onViewModelReady(viewModel);
+    viewModel.initialiseVM();
+  }
 }
