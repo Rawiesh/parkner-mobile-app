@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:parkner_mobile_app/app/app.dialogs.dart';
 import 'package:parkner_mobile_app/app/app.locator.dart';
 import 'package:parkner_mobile_app/app/app.router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,6 +10,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class ReservationsViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
+  final _dialogService = locator<DialogService>();
   SharedPreferences? prefs;
   List<String> reservationIds = [];
   List<dynamic> reservations = [];
@@ -29,6 +31,13 @@ class ReservationsViewModel extends BaseViewModel {
       var reservationData = jsonDecode(response.body);
       reservations.add(reservationData);
     }
+  }
+
+  void onCardTap({required String title, required String qrUrl}) {
+    _dialogService.showCustomDialog(
+      variant: DialogType.displayQr,
+      data: {"title": title, "url": qrUrl},
+    );
   }
 
   void navigateToHome() {

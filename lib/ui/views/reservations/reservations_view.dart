@@ -43,7 +43,11 @@ class ReservationsView extends StackedView<ReservationsViewModel> {
           final text = "${el["lot_name"]} - Spot: ${el["reserved_spot"]}";
 
           return GestureDetector(
-            onTap: () => {},
+            onTap: () => viewModel.onCardTap(
+              title: text,
+              qrUrl:
+                  "https://parkner.vercel.app/api/lots/reservations/${el["reservation_id"]}",
+            ),
             child: Card(
               elevation: 4.0,
               margin:
