@@ -19,6 +19,7 @@ class ReservationsViewModel extends BaseViewModel {
     for (var id in reservationIds) {
       await updateReservationsList(id);
     }
+    notifyListeners();
   }
 
   Future<void> updateReservationsList(String id) async {
