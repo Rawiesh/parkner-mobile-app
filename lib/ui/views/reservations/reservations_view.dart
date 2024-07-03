@@ -14,7 +14,23 @@ class ReservationsView extends StackedView<ReservationsViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xff6bced1),
+        flexibleSpace: const SafeArea(
+          child: Center(
+            child: Text(
+              'Reservations',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
+                color: Color(0xff06100E),
+              ),
+            ),
+          ),
+        ),
+      ),
       body: Container(
         padding: const EdgeInsets.only(left: 25.0, right: 25.0),
       ),
