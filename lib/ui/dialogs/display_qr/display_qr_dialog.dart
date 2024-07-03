@@ -22,6 +22,10 @@ class DisplayQrDialog extends StackedView<DisplayQrDialogModel> {
     DisplayQrDialogModel viewModel,
     Widget? child,
   ) {
+    final reservationData = request.data["reservation_data"];
+    final qrUrl =
+        "https://parkner.vercel.app/api/lots/reservations/${reservationData["reservation_id"]}";
+
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       backgroundColor: Colors.white,
@@ -34,24 +38,38 @@ class DisplayQrDialog extends StackedView<DisplayQrDialogModel> {
               request.data["title"],
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 24,
                 fontWeight: FontWeight.w600,
               ),
             ),
             const SizedBox(height: 16),
             QrImageView(
-              data: request.data["url"],
+              data: qrUrl,
               version: QrVersions.auto,
               size: 200.0,
             ),
             const SizedBox(height: 16),
-            PrimaryBtn(
-              btnText: "Close",
-              size: const Size(280, 50),
-              backgroundColor: const Color(0xff358C7C),
-              onPressed: () {
-                completer(DialogResponse(confirmed: true));
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                PrimaryBtn(
+                  btnText: "Cancel",
+                  size: const Size(124, 50),
+                  backgroundColor: const Color(0xffFF6961),
+                  onPressed: () async {
+                    await viewModel.onDeleteReservationPress(reservationData);
+                    completer(DialogResponse(confirmed: true));
+                  },
+                ),
+                PrimaryBtn(
+                  btnText: "Close",
+                  size: const Size(124, 50),
+                  backgroundColor: const Color(0xff358C7C),
+                  onPressed: () {
+                    completer(DialogResponse(confirmed: true));
+                  },
+                ),
+              ],
             ),
           ],
         ),
@@ -62,4 +80,10 @@ class DisplayQrDialog extends StackedView<DisplayQrDialogModel> {
   @override
   DisplayQrDialogModel viewModelBuilder(BuildContext context) =>
       DisplayQrDialogModel();
+
+  @override
+  void onViewModelReady(DisplayQrDialogModel viewModel) {
+    super.onViewModelReady(viewModel);
+    viewModel.initialiseVM();
+  }
 }

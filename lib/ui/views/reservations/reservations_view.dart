@@ -31,48 +31,52 @@ class ReservationsView extends StackedView<ReservationsViewModel> {
           ),
         ),
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.only(top: 12),
-        itemCount: viewModel.reservations.length,
-        itemBuilder: (context, index) {
-          final el = viewModel.reservations[index];
-          if (!el.containsKey("lot_name") || !el.containsKey("reserved_spot")) {
-            return Container();
-          }
+      body: viewModel.reservations.isEmpty
+          ? const Center(
+              child: Text("No reservations found"),
+            )
+          : ListView.builder(
+              padding: const EdgeInsets.only(top: 12),
+              itemCount: viewModel.reservations.length,
+              itemBuilder: (context, index) {
+                final el = viewModel.reservations[index];
+                if (!el.containsKey("lot_name") ||
+                    !el.containsKey("reserved_spot")) {
+                  return Container();
+                }
 
-          final text = "${el["lot_name"]} - Spot: ${el["reserved_spot"]}";
+                final text = "${el["lot_name"]} - Spot: ${el["reserved_spot"]}";
 
-          return GestureDetector(
-            onTap: () => viewModel.onCardTap(
-              title: text,
-              qrUrl:
-                  "https://parkner.vercel.app/api/lots/reservations/${el["reservation_id"]}",
-            ),
-            child: Card(
-              elevation: 4.0,
-              margin:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              color: const Color(0xffe6f7f7),
-              child: Container(
-                padding: const EdgeInsets.all(16.0),
-                child: Center(
-                  child: Text(
-                    text,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xff06100E),
+                return GestureDetector(
+                  onTap: () => viewModel.onCardTap(
+                    title: text,
+                    reservationData: el,
+                  ),
+                  child: Card(
+                    elevation: 4.0,
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 15.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    color: const Color(0xffe6f7f7),
+                    child: Container(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Center(
+                        child: Text(
+                          text,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xff06100E),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
-          );
-        },
-      ),
       bottomNavigationBar: FlashyTabBar(
         selectedIndex: 1,
         showElevation: true,

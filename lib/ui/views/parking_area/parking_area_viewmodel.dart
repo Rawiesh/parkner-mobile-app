@@ -8,8 +8,10 @@ import 'package:parkner_mobile_app/app/app.locator.dart';
 import 'package:parkner_mobile_app/services/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class ParkingAreaViewModel extends BaseViewModel {
+  final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
   SharedPreferences? prefs;
   String? lotId;
@@ -82,6 +84,7 @@ class ParkingAreaViewModel extends BaseViewModel {
       padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
       duration: Duration(seconds: 1),
     ));
+    _navigationService.back();
   }
 
   Future<void> fetchLotData() async {

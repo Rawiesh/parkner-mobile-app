@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:parkner_mobile_app/app/app.dialogs.dart';
@@ -17,11 +18,7 @@ class ReservationsViewModel extends BaseViewModel {
 
   Future<void> initialiseVM() async {
     prefs = await SharedPreferences.getInstance();
-    reservationIds = prefs?.getStringList('reservations') ?? [];
-    for (var id in reservationIds) {
-      await updateReservationsList(id);
-    }
-    notifyListeners();
+    await getReservationsFromStorage();
   }
 
   Future<void> updateReservationsList(String id) async {
@@ -33,11 +30,30 @@ class ReservationsViewModel extends BaseViewModel {
     }
   }
 
-  void onCardTap({required String title, required String qrUrl}) {
-    _dialogService.showCustomDialog(
+  Future<void> getReservationsFromStorage() async {
+    reservations.clear();
+    reservationIds.clear();
+    reservationIds = prefs?.getStringList('reservations') ?? [];
+    for (var id in reservationIds) {
+      await updateReservationsList(id);
+    }
+    notifyListeners();
+  }
+
+  Future<void> onCardTap({
+    required String title,
+    required dynamic reservationData,
+  }) async {
+    inspect(reservationData);
+
+    await _dialogService.showCustomDialog(
       variant: DialogType.displayQr,
-      data: {"title": title, "url": qrUrl},
+      data: {
+        "title": title,
+        "reservation_data": reservationData,
+      },
     );
+    await getReservationsFromStorage();
   }
 
   void navigateToHome() {
