@@ -1,3 +1,4 @@
+import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:parkner_mobile_app/ui/widgets/search_input.dart';
 import 'package:stacked/stacked.dart';
@@ -78,6 +79,23 @@ class HomeView extends StackedView<HomeViewModel> {
           ),
           const SizedBox(height: 16),
           ...viewModel.areasSection,
+        ],
+      ),
+      bottomNavigationBar: FlashyTabBar(
+        selectedIndex: 0,
+        showElevation: true,
+        onItemSelected: (i) {
+          if (i == 1) viewModel.navigateToReservations();
+        },
+        items: [
+          FlashyTabBarItem(
+            icon: const Icon(Icons.home),
+            title: const Text('Home'),
+          ),
+          FlashyTabBarItem(
+            icon: const Icon(Icons.local_activity),
+            title: const Text('Reservations'),
+          ),
         ],
       ),
     );

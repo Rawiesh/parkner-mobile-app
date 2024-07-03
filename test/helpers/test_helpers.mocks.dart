@@ -702,4 +702,33 @@ class MockAuthService extends _i1.Mock implements _i7.AuthService {
         returnValue: _i5.Future<String?>.value(),
         returnValueForMissingStub: _i5.Future<String?>.value(),
       ) as _i5.Future<String?>);
+
+  @override
+  _i5.Future<String?> signUpUser({
+    required String? username,
+    required String? email,
+    required String? password,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signUpUser,
+          [],
+          {
+            #username: username,
+            #email: email,
+            #password: password,
+          },
+        ),
+        returnValue: _i5.Future<String?>.value(),
+        returnValueForMissingStub: _i5.Future<String?>.value(),
+      ) as _i5.Future<String?>);
+
+  @override
+  void clearUser() => super.noSuchMethod(
+        Invocation.method(
+          #clearUser,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

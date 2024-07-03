@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:parkner_mobile_app/app/app.locator.dart';
+import 'package:parkner_mobile_app/app/app.router.dart';
 import 'package:parkner_mobile_app/services/auth_service.dart';
 import 'package:parkner_mobile_app/ui/views/parking_area/parking_area_view.dart';
 import 'package:parkner_mobile_app/ui/widgets/area_card.dart';
@@ -74,6 +75,10 @@ class HomeViewModel extends BaseViewModel {
       areasSection.add(const SizedBox(height: 16));
     }
     notifyListeners();
+  }
+
+  void navigateToReservations() {
+    _navigationService.navigateToReservationsView();
   }
 
   @override

@@ -10,6 +10,7 @@ import 'package:parkner_mobile_app/ui/views/parking_area/parking_area_view.dart'
 import 'package:parkner_mobile_app/services/auth_service.dart';
 import 'package:parkner_mobile_app/ui/dialogs/login/login_dialog.dart';
 import 'package:parkner_mobile_app/ui/dialogs/signup/signup_dialog.dart';
+import 'package:parkner_mobile_app/ui/views/reservations/reservations_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -19,6 +20,7 @@ import 'package:parkner_mobile_app/ui/dialogs/signup/signup_dialog.dart';
     MaterialRoute(page: StartupView),
     MaterialRoute(page: HomeView),
     MaterialRoute(page: ParkingAreaView),
+    MaterialRoute(page: ReservationsView),
 // @stacked-route
   ],
   dependencies: [

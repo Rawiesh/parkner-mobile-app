@@ -5,16 +5,18 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i7;
+import 'package:flutter/material.dart' as _i8;
 import 'package:flutter/material.dart';
 import 'package:parkner_mobile_app/ui/views/home/home_view.dart' as _i5;
 import 'package:parkner_mobile_app/ui/views/home2/home_view2.dart' as _i2;
 import 'package:parkner_mobile_app/ui/views/parking_area/parking_area_view.dart'
     as _i6;
+import 'package:parkner_mobile_app/ui/views/reservations/reservations_view.dart'
+    as _i7;
 import 'package:parkner_mobile_app/ui/views/startup/startup_view.dart' as _i4;
 import 'package:parkner_mobile_app/ui/views/startup2/startup_view2.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i8;
+import 'package:stacked_services/stacked_services.dart' as _i9;
 
 class Routes {
   static const homeView2 = '/home-view2';
@@ -27,12 +29,15 @@ class Routes {
 
   static const parkingAreaView = '/parking-area-view';
 
+  static const reservationsView = '/reservations-view';
+
   static const all = <String>{
     homeView2,
     startupView2,
     startupView,
     homeView,
     parkingAreaView,
+    reservationsView,
   };
 }
 
@@ -58,29 +63,33 @@ class StackedRouter extends _i1.RouterBase {
       Routes.parkingAreaView,
       page: _i6.ParkingAreaView,
     ),
+    _i1.RouteDef(
+      Routes.reservationsView,
+      page: _i7.ReservationsView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView2: (data) {
-      return _i7.MaterialPageRoute<dynamic>(
+      return _i8.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView2(),
         settings: data,
       );
     },
     _i3.StartupView2: (data) {
-      return _i7.MaterialPageRoute<dynamic>(
+      return _i8.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView2(),
         settings: data,
       );
     },
     _i4.StartupView: (data) {
-      return _i7.MaterialPageRoute<dynamic>(
+      return _i8.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.StartupView(),
         settings: data,
       );
     },
     _i5.HomeView: (data) {
-      return _i7.MaterialPageRoute<dynamic>(
+      return _i8.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.HomeView(),
         settings: data,
       );
@@ -89,9 +98,15 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<ParkingAreaViewArguments>(
         orElse: () => const ParkingAreaViewArguments(),
       );
-      return _i7.MaterialPageRoute<dynamic>(
+      return _i8.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i6.ParkingAreaView(key: args.key, lotId: args.lotId),
+        settings: data,
+      );
+    },
+    _i7.ReservationsView: (data) {
+      return _i8.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i7.ReservationsView(),
         settings: data,
       );
     },
@@ -110,7 +125,7 @@ class ParkingAreaViewArguments {
     this.lotId,
   });
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
   final String? lotId;
 
@@ -131,7 +146,7 @@ class ParkingAreaViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i8.NavigationService {
+extension NavigatorStateExtension on _i9.NavigationService {
   Future<dynamic> navigateToHomeView2([
     int? routerId,
     bool preventDuplicates = true,
@@ -189,7 +204,7 @@ extension NavigatorStateExtension on _i8.NavigationService {
   }
 
   Future<dynamic> navigateToParkingAreaView({
-    _i7.Key? key,
+    _i8.Key? key,
     String? lotId,
     int? routerId,
     bool preventDuplicates = true,
@@ -199,6 +214,20 @@ extension NavigatorStateExtension on _i8.NavigationService {
   }) async {
     return navigateTo<dynamic>(Routes.parkingAreaView,
         arguments: ParkingAreaViewArguments(key: key, lotId: lotId),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToReservationsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.reservationsView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -262,7 +291,7 @@ extension NavigatorStateExtension on _i8.NavigationService {
   }
 
   Future<dynamic> replaceWithParkingAreaView({
-    _i7.Key? key,
+    _i8.Key? key,
     String? lotId,
     int? routerId,
     bool preventDuplicates = true,
@@ -272,6 +301,20 @@ extension NavigatorStateExtension on _i8.NavigationService {
   }) async {
     return replaceWith<dynamic>(Routes.parkingAreaView,
         arguments: ParkingAreaViewArguments(key: key, lotId: lotId),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithReservationsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.reservationsView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
