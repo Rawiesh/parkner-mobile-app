@@ -81,23 +81,25 @@ class HomeView extends StackedView<HomeViewModel> {
           ...viewModel.areasSection,
         ],
       ),
-      bottomNavigationBar: FlashyTabBar(
-        selectedIndex: 0,
-        showElevation: true,
-        onItemSelected: (i) {
-          if (i == 1) viewModel.navigateToReservations();
-        },
-        items: [
-          FlashyTabBarItem(
-            icon: const Icon(Icons.home),
-            title: const Text('Home'),
-          ),
-          FlashyTabBarItem(
-            icon: const Icon(Icons.local_activity),
-            title: const Text('Reservations'),
-          ),
-        ],
-      ),
+      bottomNavigationBar: viewModel.user == null
+          ? null
+          : FlashyTabBar(
+              selectedIndex: 0,
+              showElevation: true,
+              onItemSelected: (i) {
+                if (i == 1) viewModel.navigateToReservations();
+              },
+              items: [
+                FlashyTabBarItem(
+                  icon: const Icon(Icons.home),
+                  title: const Text('Home'),
+                ),
+                FlashyTabBarItem(
+                  icon: const Icon(Icons.local_activity),
+                  title: const Text('Reservations'),
+                ),
+              ],
+            ),
     );
   }
 
