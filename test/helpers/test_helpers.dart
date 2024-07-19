@@ -3,6 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:parkner_mobile_app/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:parkner_mobile_app/services/auth_service.dart';
+import 'package:parkner_mobile_app/services/constants_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -12,6 +13,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<AuthService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<ConstantsService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -19,6 +21,7 @@ void registerServices() {
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
   getAndRegisterAuthService();
+  getAndRegisterConstantsService();
 // @stacked-mock-register
 }
 
@@ -76,6 +79,13 @@ MockAuthService getAndRegisterAuthService() {
   _removeRegistrationIfExists<AuthService>();
   final service = MockAuthService();
   locator.registerSingleton<AuthService>(service);
+  return service;
+}
+
+MockConstantsService getAndRegisterConstantsService() {
+  _removeRegistrationIfExists<ConstantsService>();
+  final service = MockConstantsService();
+  locator.registerSingleton<ConstantsService>(service);
   return service;
 }
 // @stacked-mock-create

@@ -1,10 +1,13 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:parkner_mobile_app/app/app.locator.dart';
+import 'package:parkner_mobile_app/services/constants_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked.dart';
 
 class DisplayQrDialogModel extends BaseViewModel {
+  final _constantsService = locator<ConstantsService>();
   SharedPreferences? prefs;
   dynamic lotData;
 
@@ -17,7 +20,7 @@ class DisplayQrDialogModel extends BaseViewModel {
   ) async {
     final spot = reservationData["reserved_spot"];
     await http.post(
-      Uri.parse('https://parkner.vercel.app/api/lots/reservations/delete'),
+      Uri.parse('${_constantsService.apiUrl}/lots/reservations/delete'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({"id": reservationData["reservation_id"]}),
     );
@@ -38,7 +41,7 @@ class DisplayQrDialogModel extends BaseViewModel {
 
     // Post updated lot data
     await http.post(
-      Uri.parse('https://parkner.vercel.app/api/lot/${newLotData["lot_id"]}'),
+      Uri.parse('${_constantsService.apiUrl}/lot/${newLotData["lot_id"]}'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(newLotData),
     );
@@ -46,7 +49,7 @@ class DisplayQrDialogModel extends BaseViewModel {
 
   Future<void> fetchLotData(String lotId) async {
     final response =
-        await http.get(Uri.parse('https://parkner.vercel.app/api/lot/$lotId'));
+        await http.get(Uri.parse('${_constantsService.apiUrl}/lot/$lotId'));
     if (response.statusCode == 200) {
       lotData = jsonDecode(response.body);
     }

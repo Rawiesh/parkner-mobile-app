@@ -1,8 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:parkner_mobile_app/app/app.locator.dart';
+import 'package:parkner_mobile_app/services/constants_service.dart';
 
 class AuthService {
+  final _constantsService = locator<ConstantsService>();
   Map? user;
 
   Future<String?> loginUser({
@@ -12,7 +15,7 @@ class AuthService {
     clearUser();
 
     final response = await http.post(
-      Uri.parse('https://parkner.vercel.app/api/users/login'),
+      Uri.parse('${_constantsService.apiUrl}/users/login'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({'username': username, 'password': password}),
     );
@@ -38,7 +41,7 @@ class AuthService {
     clearUser();
 
     final response = await http.post(
-      Uri.parse('https://parkner.vercel.app/api/users/sign-up'),
+      Uri.parse('${_constantsService.apiUrl}/users/sign-up'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'username': username,

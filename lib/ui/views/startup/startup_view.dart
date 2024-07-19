@@ -84,4 +84,10 @@ class StartupView extends StackedView<StartupViewModel> {
     BuildContext context,
   ) =>
       StartupViewModel();
+
+  @override
+  void onViewModelReady(StartupViewModel viewModel) {
+    super.onViewModelReady(viewModel);
+    viewModel.initialiseVM();
+  }
 }

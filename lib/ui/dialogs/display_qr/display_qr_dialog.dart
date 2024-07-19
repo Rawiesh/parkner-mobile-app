@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:parkner_mobile_app/app/app.locator.dart';
+import 'package:parkner_mobile_app/services/constants_service.dart';
 import 'package:parkner_mobile_app/ui/widgets/primary_button.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:stacked/stacked.dart';
@@ -7,10 +9,12 @@ import 'package:stacked_services/stacked_services.dart';
 import 'display_qr_dialog_model.dart';
 
 class DisplayQrDialog extends StackedView<DisplayQrDialogModel> {
+  final _constantsService = locator<ConstantsService>();
+
   final DialogRequest request;
   final Function(DialogResponse) completer;
 
-  const DisplayQrDialog({
+  DisplayQrDialog({
     Key? key,
     required this.request,
     required this.completer,
@@ -24,7 +28,7 @@ class DisplayQrDialog extends StackedView<DisplayQrDialogModel> {
   ) {
     final reservationData = request.data["reservation_data"];
     final qrUrl =
-        "https://parkner.vercel.app/api/lots/reservations/${reservationData["reservation_id"]}";
+        '${_constantsService.apiUrl}/lots/reservations/${reservationData["reservation_id"]}';
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

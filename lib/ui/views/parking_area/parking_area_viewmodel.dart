@@ -7,11 +7,13 @@ import 'package:http/http.dart' as http;
 import 'package:parkner_mobile_app/app/app.dialogs.dart';
 import 'package:parkner_mobile_app/app/app.locator.dart';
 import 'package:parkner_mobile_app/services/auth_service.dart';
+import 'package:parkner_mobile_app/services/constants_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class ParkingAreaViewModel extends BaseViewModel {
+  final _constantsService = locator<ConstantsService>();
   final _navigationService = locator<NavigationService>();
   final _dialogService = locator<DialogService>();
   final _authService = locator<AuthService>();
@@ -55,14 +57,14 @@ class ParkingAreaViewModel extends BaseViewModel {
 
     // Post updated lot data
     await http.post(
-      Uri.parse('https://parkner.vercel.app/api/lot/${newLotData["lot_id"]}'),
+      Uri.parse('${_constantsService.apiUrl}/lot/${newLotData["lot_id"]}'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(newLotData),
     );
 
     // Create a reservation
     final reservationResponse = await http.post(
-      Uri.parse('https://parkner.vercel.app/api/lots/reservations'),
+      Uri.parse('${_constantsService.apiUrl}/lots/reservations'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         "lot_id": newLotData["lot_id"],
@@ -96,7 +98,7 @@ class ParkingAreaViewModel extends BaseViewModel {
 
   Future<void> fetchLotData() async {
     final response =
-        await http.get(Uri.parse('https://parkner.vercel.app/api/lot/$lotId'));
+        await http.get(Uri.parse('${_constantsService.apiUrl}/lot/$lotId'));
     if (response.statusCode == 200) {
       lotData = jsonDecode(response.body);
     }
@@ -115,7 +117,7 @@ class ParkingAreaViewModel extends BaseViewModel {
   void startFetchingLotData() {
     fetchLotData();
     // TODO: Reduce to 500ms before production build
-    _timer = Timer.periodic(const Duration(milliseconds: 1000), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
       fetchLotData();
     });
   }

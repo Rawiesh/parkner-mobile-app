@@ -13,6 +13,7 @@ import 'package:parkner_mobile_app/ui/dialogs/signup/signup_dialog.dart';
 import 'package:parkner_mobile_app/ui/views/reservations/reservations_view.dart';
 import 'package:parkner_mobile_app/ui/dialogs/display_qr/display_qr_dialog.dart';
 import 'package:parkner_mobile_app/ui/dialogs/pay/pay_dialog.dart';
+import 'package:parkner_mobile_app/services/constants_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -30,6 +31,7 @@ import 'package:parkner_mobile_app/ui/dialogs/pay/pay_dialog.dart';
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: AuthService),
+    LazySingleton(classType: ConstantsService),
 // @stacked-service
   ],
   bottomsheets: [

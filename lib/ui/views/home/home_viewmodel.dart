@@ -6,12 +6,14 @@ import 'package:http/http.dart' as http;
 import 'package:parkner_mobile_app/app/app.locator.dart';
 import 'package:parkner_mobile_app/app/app.router.dart';
 import 'package:parkner_mobile_app/services/auth_service.dart';
+import 'package:parkner_mobile_app/services/constants_service.dart';
 import 'package:parkner_mobile_app/ui/views/parking_area/parking_area_view.dart';
 import 'package:parkner_mobile_app/ui/widgets/area_card.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends BaseViewModel {
+  final _constantsService = locator<ConstantsService>();
   final _authService = locator<AuthService>();
   final _navigationService = locator<NavigationService>();
   final searchController = TextEditingController();
@@ -22,7 +24,7 @@ class HomeViewModel extends BaseViewModel {
 
   Future<void> fetchAllAreas() async {
     final response =
-        await http.get(Uri.parse('https://parkner.vercel.app/api/lots'));
+        await http.get(Uri.parse('${_constantsService.apiUrl}/lots'));
     if (response.statusCode == 200) {
       areas = jsonDecode(response.body);
       areas = searchAreas(areas, searchController.text);
@@ -46,7 +48,7 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
     fetchAllAreas();
     // TODO: Reduce to 500ms before production build
-    _timer = Timer.periodic(const Duration(milliseconds: 1000), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
       fetchAllAreas();
     });
   }
