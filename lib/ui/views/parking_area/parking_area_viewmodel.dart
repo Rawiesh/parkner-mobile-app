@@ -115,7 +115,7 @@ class ParkingAreaViewModel extends BaseViewModel {
   void startFetchingLotData() {
     fetchLotData();
     // TODO: Reduce to 500ms before production build
-    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 1000), (timer) {
       fetchLotData();
     });
   }
