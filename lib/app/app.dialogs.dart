@@ -10,6 +10,7 @@ import 'app.locator.dart';
 import '../ui/dialogs/display_qr/display_qr_dialog.dart';
 import '../ui/dialogs/info_alert/info_alert_dialog.dart';
 import '../ui/dialogs/login/login_dialog.dart';
+import '../ui/dialogs/pay/pay_dialog.dart';
 import '../ui/dialogs/signup/signup_dialog.dart';
 
 enum DialogType {
@@ -17,6 +18,7 @@ enum DialogType {
   login,
   signup,
   displayQr,
+  pay,
 }
 
 void setupDialogUi() {
@@ -31,6 +33,8 @@ void setupDialogUi() {
         SignupDialog(request: request, completer: completer),
     DialogType.displayQr: (context, request, completer) =>
         DisplayQrDialog(request: request, completer: completer),
+    DialogType.pay: (context, request, completer) =>
+        PayDialog(request: request, completer: completer),
   };
 
   dialogService.registerCustomDialogBuilders(builders);

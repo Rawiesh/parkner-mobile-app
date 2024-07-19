@@ -87,7 +87,7 @@ class ParkingAreaView extends StackedView<ParkingAreaViewModel> {
                         btnText: "Reserve",
                         size: const Size(250, 50),
                         backgroundColor: const Color(0xff358C7C),
-                        onPressed: viewModel.onReservePressed,
+                        onPressed: viewModel.selectHours,
                       ),
                     ],
                   )

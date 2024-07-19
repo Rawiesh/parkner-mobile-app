@@ -12,6 +12,7 @@ import 'package:parkner_mobile_app/ui/dialogs/login/login_dialog.dart';
 import 'package:parkner_mobile_app/ui/dialogs/signup/signup_dialog.dart';
 import 'package:parkner_mobile_app/ui/views/reservations/reservations_view.dart';
 import 'package:parkner_mobile_app/ui/dialogs/display_qr/display_qr_dialog.dart';
+import 'package:parkner_mobile_app/ui/dialogs/pay/pay_dialog.dart';
 // @stacked-import
 
 @StackedApp(
@@ -40,6 +41,7 @@ import 'package:parkner_mobile_app/ui/dialogs/display_qr/display_qr_dialog.dart'
     StackedDialog(classType: LoginDialog),
     StackedDialog(classType: SignupDialog),
     StackedDialog(classType: DisplayQrDialog),
+    StackedDialog(classType: PayDialog),
 // @stacked-dialog
   ],
 )

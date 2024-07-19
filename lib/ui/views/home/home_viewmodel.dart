@@ -46,7 +46,7 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
     fetchAllAreas();
     // TODO: Reduce to 500ms before production build
-    _timer = Timer.periodic(const Duration(days: 1), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
       fetchAllAreas();
     });
   }

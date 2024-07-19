@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:parkner_mobile_app/app/app.dialogs.dart';
 import 'package:parkner_mobile_app/app/app.locator.dart';
 import 'package:parkner_mobile_app/services/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +13,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class ParkingAreaViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
+  final _dialogService = locator<DialogService>();
   final _authService = locator<AuthService>();
   SharedPreferences? prefs;
   String? lotId;
@@ -36,7 +38,12 @@ class ParkingAreaViewModel extends BaseViewModel {
     }
   }
 
-  Future<void> onReservePressed() async {
+  Future<void> selectHours() async {
+    await _dialogService.showCustomDialog(variant: DialogType.pay);
+    await placeReservation();
+  }
+
+  Future<void> placeReservation() async {
     await fetchLotData();
 
     // Create a copy with new lot data
@@ -47,7 +54,7 @@ class ParkingAreaViewModel extends BaseViewModel {
     }
 
     // Post updated lot data
-    final lotResponse = await http.post(
+    await http.post(
       Uri.parse('https://parkner.vercel.app/api/lot/${newLotData["lot_id"]}'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(newLotData),
@@ -108,7 +115,7 @@ class ParkingAreaViewModel extends BaseViewModel {
   void startFetchingLotData() {
     fetchLotData();
     // TODO: Reduce to 500ms before production build
-    _timer = Timer.periodic(const Duration(days: 1), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
       fetchLotData();
     });
   }
